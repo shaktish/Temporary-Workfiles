@@ -1,79 +1,95 @@
+<!DOCTYPE html>
 <html>
 <head>
-	<title>closure</title>
+	<title>Constructor</title>
 </head>
 <body>
 <script type="text/javascript">
+// (function () {
 
-	// create IIFE function for privacy so it doesn't interfer other codes.
-	(function () {
-		// created Question contructor
-		function Question (question, options, answer) {
-			this.question = question;
-			this.options = options;
-			this.answer = answer;
+// })();
+debugger;
+	function Question (question,options, answer){
+		this.question = question,
+		this.options = options,
+		this.answer = answer
+	}
+	Question.prototype.displayQuestion = function () {
+		console.log(this.question);
+	}
+
+	Question.prototype.displayOptions = function () {
+		for(var i=0; i < this.options.length; i++){
+				console.log(i +1 + ' ' + this.options[i]);
 		}
-		// adding method to constructor by prototype to display questions and options
-		Question.prototype.displayQuestion = function () { 
-			console.log(this.question)
+	}
+	Question.prototype.displayAnswer = function () {
+		return this.answer;
+	}
 
-			for(var i=0; i <this.options.length; i ++){
-				console.log(i + 1 + ' :' + this.options[i]);
-			}
-		};
+	var q1 = new Question ('The \'Black flag\' signifies?', ['revolution/danger','peace','protest','love'],3);
+	var q2 = new Question ('How do you call a function named "myFunction"?', ['call function myFunction()','myFunction()','call myFunction()'],2);
+	var q3 = new Question ('What is the correct syntax for referring to an external script called "xxx.js?', ['<script src="xxx.js">','<script href="xxx.js">','<script name="xxx.js">'],1);
+	//var score = 0;
 
-		// adding a method to constructor via prototype 
-		Question.prototype.correctAnswer = function (ans) { 
-			if(ans === this.answer) {
-				console.log('Correct Answer');
+	function scoreFunc () {
+
+		var score = 0;
+		return function (userAnswer, correctAnswer) {
+			if (parseInt(userAnswer) === correctAnswer) {
+				score++;
+				console.log('---------------------')
+				console.log('Your score ' + score);
+				console.log('---------------------')
+				console.log('right');
 			} else {
-				console.log('Wrong Answer, Try again');
+				console.log('---------------------')
+				console.log('Your score ' + score);
+				console.log('---------------------');
 			}
-		};
+				// console.log(userAnswer)
+				// console.log(correctAnswer)
+				// console.log(score);
 
+				// score++;
+				// console.log(score);
+		}
+	}
+	
+	var getScore = scoreFunc();
 
-		// adding 3 question by contructor 
-		var q1 = new Question ('What\'s ur name?',['Srini','Shakti','Santhosh'], 2);
-		var q2 = new Question ('How old are you?',['24','32','20'], 1);
-		var q3 = new Question ('Where are u from?',['vellore','karaikal','chennai'], 3);
-
-
-		// storing questions in an array, so we can randomize it.
+	function nextQuestion () {
 		var qArr = [q1,q2,q3];
+		var random = Math.floor(Math.random() * qArr.length);
 
-		function nextQ () {
-			// use math.random
-			var randomQues = Math.floor(Math.random () * qArr.length);
+		qArr[random].displayQuestion();
+		qArr[random].displayOptions();
 
-			// logging questions in console by displayQuestion 
-			qArr[randomQues].displayQuestion();
+		var ans = prompt('what is the answer, please type the number');
+		var getAns = qArr[random].displayAnswer();
 
-			// asking user to answer using prompt
-			var ans = prompt('What is the answer?');
-
+		
+		if (parseInt(ans) !== getAns) {
+			getScore(parseInt(ans), getAns);
 			if (ans !== 'exit') {
-				qArr[randomQues].correctAnswer(parseInt(ans));
-				nextQ();
+				nextQuestion();	
+			}
+		} else {
+			getScore(ans,getAns);
+			if (ans !== 'exit') {
+				nextQuestion();	
 			}
 		}
-
-		nextQ();
-
-
-
-
-	})();
+	}
+	nextQuestion();
 
 
 
-/*
---- Expert level ---
-8. After you display the result, display the next random question, so that the game never ends (Hint: write a function for this and call it right after displaying the result)
-9. Be careful: after Task 8, the game literally never ends. So include the option to quit the game if the user writes 'exit' instead of the answer. In this case, DON'T call the function from task 8.
-10. Track the user's score to make the game more fun! So each time an answer is correct, add 1 point to the score (Hint: I'm going to use the power of closures for this, but you don't have to, just do this with the tools you feel more comfortable at this point).
-11. Display the score in the console. Use yet another method for this.
-*/	
-	
+
+
+
+
+
 
 </script>
 </body>
