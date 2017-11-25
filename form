@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Form</title>
+	<style type="text/css">
+		* {
+			box-sizing: border-box;
+		}
+		.container {
+			width: 1200px;
+			margin:0 auto;
+		}
+		form {
+			width:450px;
+			margin:0 auto;
+			border:solid 1px #eee;
+			padding:30px;
+		}
+		form label,select{
+			display: block;
+		}
+
+		form label,select {
+			margin: 10px 0 10px;
+		}
+		.center {
+			text-align: center;
+		}
+
+		.error {
+			color:red;
+			display: none;
+		}
+		.show-error{
+			display: block;
+		}
+		form input, form select {
+			width: 100%;
+			display: inline-block;
+			padding:6px 8px;
+		}
+		form #submitBtn {
+			display: block;
+			border-radius: 3px;
+			padding:12px 8px;
+			outline: none;
+			border:none;
+			text-shadow: 0 1px rgba(0,0,0,0.1);
+			margin-top: 15px;
+		}
+
+		form .submit-btn {
+			background: #d5d5d5;
+			color:#999;
+			cursor: not-allowed;
+		}
+
+		form .btn-enabled {
+			background: green;
+			color:#fff;
+			cursor: pointer;
+		}
+
+		
+	</style>
+</head>
+<body>
+<div class="container">
+	<form id="basicForm" autocomplete="on" accept="#" method="post" onsubmit="return validate()">
+		<label for="name">Name</label>
+		<input type="text" name="name" id="username">
+		<span class="username-error error">name should be least 4 chracters</span>
+
+		<label for="password">Password</label>
+		<input type="password" name="password" id="userpassword">
+		<span class="error">Type least 8 characters</span>
+
+		<label for="cpassword">Confirm password</label>
+		<input type="password" name="fname" id="userfname">
+		<span class="error">These passwords don't match.</span>
+
+		<label for="email">Email </label>
+		<input type="email" name="email" id="userEmail">
+		<span class="error">Enter a valid email address</span>
+
+		<label for="country">Country</label>
+		<select id="country" name="country">
+			<option disabled='disabled' selected='selected'>Select country</option>
+			<option value="india">india</option>
+			<option value="australia">australia</option>
+			<option value="pakistan">pakistan</option>
+		</select>
+		<span class="error">please select a country</span>
+
+		<input type="submit" name="submitBtn" id=submitBtn value="Submit" class="submit-btn" disabled>
+	</form>
+
+	<button id="test">Testing</button>
+</div>
+<script type="text/javascript">
+	var test = document.querySelector('#test');
+	var form = document.querySelector('#basicForm');
+	var submitBtn = document.querySelector('form #submitBtn');
+
+	var username_error = document.querySelector('.username-error');
+
+
+	var userName = document.querySelector('#username');
+	var userpassword = document.querySelector('#userpassword');
+
+	userName.addEventListener('focusout', function () {
+		validateName();
+	});
+
+	userName.addEventListener('focus', function (e) {
+		hideError(e);
+	})
+
+
+
+	function validateName(){
+		if(userName.value.length < 4){
+			username_error.classList.add('show-error');
+			return false
+		} else {
+			username_error.classList.remove('show-error');
+			return true
+		}
+	}
+	
+	function hideError(e){
+
+		//e.target.nextElementSibling.textContent = '';
+		if(e.target.nextElementSibling.hasAttribute('class', 'error')){
+			e.target.nextElementSibling.style.display = 'none';
+		}else {
+			return false;
+		}
+	}
+
+	//var inputList = document.querySelectorAll('form input:not([type="submit"]), form #country');
+
+	test.addEventListener('click', function (e) {
+		submitBtn.removeAttribute('disabled');
+		if (submitBtn.hasAttribute('disabled') === false) {
+			submitBtn.classList.add('btn-enabled');
+		} else {
+			submitBtn.classList.remove('btn-enabled');
+		}
+	});
+
+
+
+	//console.log(submitBtn.getAttribute('disabled'));
+
+	/*
+	1. use js to validate
+	2. fields can't be empty, 
+	3. Name field should have more than 2 chracters only strings allowed
+	4 . password validation
+	5 . passsword confimration, should be the same password
+	6 . email validation
+	7 . must select a country
+	8. only after filling all fields submit btn shuld enable
+	*/	
+	//console.log(inputList, sel);
+
+</script>
+</body>
+</html>
