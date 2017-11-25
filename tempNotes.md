@@ -213,13 +213,13 @@ a[href] {
 - **[attribute=value]** : The [attribute=value] selector is used to select elements with the specified attribute and value.
 
 Selects all elements with target="_blank"
-
+```
 css
 ```css
 a[target=_blank] {
   font-size :36px;
 }
-
+```
 
 - **[attribute~=value]** : The [attribute~=value] selector is used to select elements with an attribute value containing a specified word.
 
@@ -230,7 +230,7 @@ css
 [title~=flower] { 
     background-color: yellow;
 }
-
+```
 - **[attribute|=value]** : The [attribute|=value] selector is used to select elements with the specified attribute starting with the specified value.
 
 **Note:**The value has to be a whole word, either alone, like class="top", or followed by a hyphen(top-part ), like class="top-part".
