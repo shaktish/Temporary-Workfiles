@@ -199,7 +199,7 @@ The **onload** event is a standard event in the DOM, while the ready event is sp
 
 ## Attribute Selector 
 
-- **[attribute]**
+- **attribute**
 The [attribute] selector is used to select elements with the specified attribute.
 
 Selects all a elements with a target attribute
@@ -210,7 +210,7 @@ a[href] {
   color : red;
 }
 
-- **[attribute=value]** : The [attribute=value] selector is used to select elements with the specified attribute and value.
+- **attribute=value** : The [attribute=value] selector is used to select elements with the specified attribute and value.
 
 Selects all elements with target="_blank"
 ```
