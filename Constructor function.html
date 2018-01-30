@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<script type="text/javascript">
+
+	// Rules
+	// Person > Employee
+
+	// PERSON FUNCITON CONSTRUCTOR
+	function Planet (planetName) {
+		this._planetName = planetName
+	}
+
+	// defining getters and setters for PLANET Constructor function via PROTOTYPE 
+	Planet.prototype.getPlanetName = function (){
+		return this._planetName;
+	}
+	Planet.prototype.setPlanetName = function (newPlanetName){
+		 this._planetName = newPlanetName;
+	}
+
+	// extending Planet's properties to Person.
+	Person.prototype = new Planet();
+	// Setting person constructor name to Person
+	//Person.prototype.constructor = Employee;
+
+	function Person (name) {
+		this._name = name;
+	}
+
+	function Employee (designation){
+		this._designation = designation;
+	}
+
+	// defining getters and setters for PERSON Constructor function via PROTOTYPE 
+	Person.prototype.getName = function(){
+		return this._name;
+	}
+
+	Person.prototype.setName = function(newName){
+		this._name = newName;
+	}
+
+	// extending Person's properties to Employee.
+	Employee.prototype = new Person();
+	//Employee.prototype.constructor = Planet;
+
+	Employee.prototype.getDesignation = function(){
+		return this._designation;
+	}
+
+	Employee.prototype.setDesignation = function(newDesignation){
+		this._designation = newDesignation;
+	}
+
+	// Creating a new instance "e1"  employee using employee constructor function
+	var e1 = new Employee();
+
+	// setting e1 employee details
+
+	e1.setDesignation('UI Developer');
+	e1.setName('Shaktish');
+	e1.setPlanetName('Earth');
+
+	console.log(e1.getPlanetName() + '\n' +e1.getName() + '\n'  + e1.getDesignation());
+	console.log(e1);
+
+
+</script>
+</body>
+</html>
