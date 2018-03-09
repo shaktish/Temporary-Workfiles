@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>BEM</title>
+  <style type="text/css">
+/* DEFAULTS */
+
+html, body {
+  margin:0;
+  padding:0;
+  font-family:sans-serif;
+}
+
+p {
+  margin:0;
+  padding:0
+}
+.clearfix::after {
+  content:'';
+  display:table;
+  clear:both;
+}
+
+/* HEADER */
+
+.top-bar {
+  background:#999;
+  color:#fff;
+  padding:8px;
+}
+
+.top-bar__toll-free {
+  float:left;
+}
+
+.top-bar__currency{
+  float:right;
+}
+
+.top-bar__toll-free__text_s {
+	font-size: 12px;
+}
+
+.currency__text {
+  font-weight:bold;
+  font-size:12px;
+}
+
+.light-theme {
+  background:lavender;
+  color:#000;
+}
+
+  </style>
+</head>
+<body>
+<header>
+  <div class="header">
+    <div class="top-bar header__top-bar clearfix light-theme"> <!--block-->
+      <div class="toll-free top-bar__toll-free">  <!--block-->
+        <p>1-800-102-2667 <span class="top-bar__toll-free__text_s">toll-free</span></p>
+      </div>
+      <div class="currency top-bar__currency">  <!--block-->
+        <form action="#">
+          <span class="currency-text currency__text" >Currency</span>
+          <select name="" id="currency_value">
+            <option value="inr">INR</option>
+            <option value="usd">USD</option>
+          </select>
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+</body>
+</html>
