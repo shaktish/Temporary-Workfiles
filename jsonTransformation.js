@@ -23,18 +23,10 @@ const json = [
 json.forEach(el=>{    
   // debugger;
   el.children = [...el.children, ...el.insights];
-  
-  el.children.forEach((childEl, i)=>{
-   el.children[i] = {...childEl, title : childEl.name}
-  });
+  el.children = el.children.map((childEl, i)=> {return {...childEl, title : childEl.name}});
   
 })
 
 
 console.log(org, 'org');
 console.log(json, 'json res');
-
-
-
-
-
